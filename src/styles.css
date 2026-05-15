@@ -1,0 +1,358 @@
+:root {
+  color-scheme: light;
+  font-family: "Inter", "Avenir Next", "Segoe UI", sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  --bg-rose: #fff4f6;
+  --bg-petal: #ffe2e8;
+  --bg-cream: #fffdf8;
+  --ink: #4f3140;
+  --ink-soft: #8e6877;
+  --line: rgba(126, 85, 102, 0.12);
+  --shell: rgba(255, 255, 255, 0.74);
+  --shell-strong: rgba(255, 255, 255, 0.92);
+  --accent: #ea7d99;
+  --accent-strong: #da5a7c;
+  --accent-soft: rgba(255, 218, 227, 0.9);
+  --accent-pale: rgba(255, 240, 244, 0.94);
+  --shadow-lg: 0 30px 90px rgba(123, 83, 100, 0.16);
+  --shadow-sm: 0 16px 34px rgba(126, 84, 100, 0.1);
+  --radius-shell: 34px;
+  --radius-card: 26px;
+  --mobile-width: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  min-width: 320px;
+  background:
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.7), transparent 30%),
+    radial-gradient(circle at left 82%, rgba(255, 214, 224, 0.42), transparent 28%),
+    linear-gradient(180deg, var(--bg-rose) 0%, var(--bg-petal) 50%, #ffecef 100%);
+  color: var(--ink);
+}
+
+.app-shell {
+  width: var(--mobile-width);
+  min-height: 100%;
+  padding:
+    max(18px, env(safe-area-inset-top))
+    14px
+    max(24px, env(safe-area-inset-bottom));
+}
+
+.ticket {
+  position: relative;
+  overflow: hidden;
+  width: min(100%, 430px);
+  margin: 0 auto;
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: var(--radius-shell);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(255, 250, 251, 0.96)),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.12), transparent);
+  box-shadow: var(--shadow-lg);
+}
+
+.ticket::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at top left, rgba(255, 222, 230, 0.6), transparent 30%),
+    linear-gradient(125deg, rgba(255, 255, 255, 0.22), transparent 45%);
+  pointer-events: none;
+}
+
+.ticket__hero,
+.ticket__cards {
+  position: relative;
+  z-index: 1;
+}
+
+.ticket__kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 16px;
+  padding: 9px 12px;
+  border-radius: 999px;
+  background: rgba(255, 242, 246, 0.92);
+  color: var(--ink-soft);
+  font-size: 0.74rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.ticket__kicker::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-strong);
+  box-shadow: 0 0 0 5px rgba(218, 90, 124, 0.12);
+}
+
+.ticket h1 {
+  margin: 0;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+  font-size: clamp(2.5rem, 10vw, 4.6rem);
+  line-height: 0.92;
+  letter-spacing: -0.06em;
+}
+
+.ticket__lead {
+  max-width: 25ch;
+  margin: 14px 0 0;
+  color: var(--ink-soft);
+  font-size: 0.98rem;
+  line-height: 1.55;
+}
+
+.ticket__cards {
+  display: grid;
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.scratch-card {
+  position: relative;
+  min-height: 176px;
+  border-radius: var(--radius-card);
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.68), rgba(255, 255, 255, 0.94)),
+    linear-gradient(125deg, rgba(255, 255, 255, 0.26), transparent);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.74),
+    var(--shadow-sm);
+  isolation: isolate;
+  animation: card-enter 560ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.scratch-card:nth-child(1) {
+  animation-delay: 100ms;
+}
+
+.scratch-card:nth-child(2) {
+  animation-delay: 180ms;
+}
+
+.scratch-card:nth-child(3) {
+  animation-delay: 260ms;
+}
+
+.scratch-card:nth-child(4) {
+  animation-delay: 340ms;
+}
+
+.scratch-card--finale {
+  background:
+    radial-gradient(circle at top right, rgba(255, 224, 232, 0.9), transparent 34%),
+    linear-gradient(180deg, rgba(255, 251, 252, 0.96), rgba(255, 241, 245, 0.98));
+  border-color: rgba(218, 90, 124, 0.18);
+}
+
+.scratch-card__face {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  align-content: end;
+  min-height: 176px;
+  padding: 18px 18px 20px;
+  border-radius: inherit;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.96)),
+    linear-gradient(125deg, rgba(255, 255, 255, 0.22), transparent);
+}
+
+.scratch-card__revealed-surface {
+  display: grid;
+  align-content: end;
+  min-height: 176px;
+  padding: 18px 18px 20px;
+  border-radius: inherit;
+  background:
+    linear-gradient(180deg, rgba(255, 254, 255, 0.98), rgba(255, 247, 249, 0.98)),
+    linear-gradient(125deg, rgba(255, 255, 255, 0.18), transparent);
+}
+
+.scratch-card--revealed {
+  background:
+    linear-gradient(180deg, rgba(255, 252, 253, 0.98), rgba(255, 244, 247, 0.98)),
+    linear-gradient(125deg, rgba(255, 255, 255, 0.12), transparent);
+  border-color: rgba(218, 90, 124, 0.18);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.82),
+    0 18px 42px rgba(136, 87, 106, 0.14);
+  animation:
+    card-enter 560ms cubic-bezier(0.2, 0.8, 0.2, 1) both,
+    reveal-bloom 420ms ease-out both;
+}
+
+.scratch-card--revealed.scratch-card--finale .scratch-card__revealed-surface {
+  background:
+    radial-gradient(circle at top right, rgba(255, 225, 233, 0.72), transparent 34%),
+    linear-gradient(180deg, rgba(255, 251, 252, 1), rgba(255, 241, 245, 0.98));
+}
+
+.scratch-card--revealed.scratch-card--finale {
+  border-color: rgba(218, 90, 124, 0.26);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.88),
+    0 20px 48px rgba(218, 90, 124, 0.16);
+}
+
+.scratch-card__index {
+  margin: 0 0 10px;
+  color: rgba(95, 62, 76, 0.46);
+  font-size: 0.76rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.scratch-card__title {
+  margin: 0;
+  max-width: 11ch;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+  font-size: clamp(1.7rem, 8vw, 2.5rem);
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+}
+
+.scratch-card__hint {
+  margin: 10px 0 0;
+  max-width: 24ch;
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.scratch-card__layer {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+  border-radius: inherit;
+  touch-action: none;
+  cursor: grab;
+  transition:
+    opacity 260ms ease,
+    transform 260ms ease,
+    visibility 260ms ease;
+}
+
+.scratch-card__layer.is-open {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.985);
+  pointer-events: none;
+}
+
+.scratch-card__layer canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.scratch-card__overlay-copy {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 12px;
+  padding: 18px;
+  color: #fff9fb;
+  text-align: center;
+  pointer-events: none;
+}
+
+.scratch-card__overlay-copy strong {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 132px;
+  padding: 11px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  font-size: 1rem;
+  letter-spacing: 0.01em;
+}
+
+.scratch-card__layer:active .scratch-card__overlay-copy strong {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.scratch-card__overlay-copy span {
+  max-width: 18ch;
+  color: rgba(255, 249, 251, 0.9);
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+
+@keyframes card-enter {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes reveal-bloom {
+  from {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.82),
+      0 0 0 rgba(136, 87, 106, 0);
+  }
+
+  to {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.82),
+      0 18px 42px rgba(136, 87, 106, 0.14);
+  }
+}
+
+@media (min-width: 740px) {
+  .app-shell {
+    display: grid;
+    place-items: center;
+    padding: 28px;
+  }
+
+  .ticket {
+    width: min(100%, 460px);
+    padding: 22px;
+  }
+
+  .ticket__cards {
+    gap: 16px;
+  }
+
+  .scratch-card,
+  .scratch-card__face,
+  .scratch-card__revealed-surface {
+    min-height: 184px;
+  }
+}
